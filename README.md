@@ -2,7 +2,6 @@
 
 This application can be used as **starter kit** if you want to get started building an single page application with **Laravel** 
 and **VueJS**. 
-This is a blog using feature like administration, creating and editing posts, commenting, searching posts and many other feature which can be found in most web applications.
 
 ## Technologies
 
