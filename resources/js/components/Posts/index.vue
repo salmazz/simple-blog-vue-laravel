@@ -147,9 +147,8 @@
                             <td>{{ post.body.substring(0, 30) }}</td>
                             <td>
                                 <toggle-button
-                                    @change="onChangeEventHandler(post)"
-                                    :value="post.published"
-                                    :sync="true"
+                                disabled
+                                    :value="!!parseInt(post.published)"
                                     :labels="{
                                         checked: 'on',
                                         unchecked: 'off',
@@ -235,15 +234,6 @@ export default {
                 )
                 .then((response) => {
                     this.posts = response.data;
-                });
-        },
-        onChangeEventHandler(post) {
-            axios
-                .put("/api/posts/toggle-status/" + { post: post.id })
-                .then((response) => {
-                    (this.published = response.data.published),
-                        swal("Post Status updated Successfully");
-                    this.getResults();
                 });
         },
         delete_post(id) {

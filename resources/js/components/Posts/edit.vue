@@ -51,7 +51,8 @@
                     class="form-check-input"
                     type="checkbox"
                     v-model="fields.published"
-
+                     :checked="fields.published"
+                      @change="handleChange($event)"
                     id="flexCheckChecked"
                 />
                 <label class="form-check-label" for="flexCheckChecked">
@@ -94,6 +95,7 @@ export default {
         });
     },
     methods: {
+
         submit_form() {
             this.form_submiting = true;
             axios

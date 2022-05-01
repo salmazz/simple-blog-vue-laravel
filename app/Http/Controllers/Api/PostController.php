@@ -58,14 +58,6 @@ class PostController extends Controller
         return new PostResource($post);
     }
 
-
-    public function toggleStatus(Post $post)
-    {
-        $post->update(['published' => request('published')]);
-        return new PostResource($post);
-    }
-
-
     /**
      * Update the specified resource in storage.
      *

@@ -4,21 +4,48 @@
             <div
                 class="row flex-nowrap justify-content-between align-items-center"
             >
-
                 <div class="col-12 text-center">
-                    <a class="blog-header-logo text-dark" href="#">Simple blog</a>
+                    <a class="blog-header-logo text-dark" href="#"
+                        >Simple blog</a
+                    >
                 </div>
             </div>
         </header>
-
-        <div class="nav-scroller py-1 mb-2">
-    <nav class="nav d-flex justify-content-between">
-
-      <a v-for="category in categories"  :value="category.id"
-                       :key="category.id" class="p-2 link-secondary" href="#"> {{  category.name }}</a>
-
-    </nav>
-  </div>
+        <div class="row">
+            <div
+                class="col-md-12"
+                v-for="category in categories_posts"
+                :key="category.id"
+            >
+                <h1
+                    style="font-weight: bold"
+                    class="m-3"
+                    :class="`${category.posts_count === 0 ? 'd-none' : ''}`"
+                >
+                    {{ category.name }}
+                    <span class="badge bg-info py-1 px-2">{{
+                        category.posts_count
+                    }}</span>
+                </h1>
+                <div class="row">
+                    <div
+                        class="col-md-3"
+                        v-for="post in category.posts"
+                        :key="post.id"
+                    >
+                        <div class="card mb-3 p-3">
+                            <div class="card-header">
+                                <h2>{{ post.title }}</h2>
+                            </div>
+                            <div class="card-body">
+                                <p>{{ post.body }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -27,55 +54,26 @@ export default {
     created() {},
     data() {
         return {
-            posts: {},
-            categories: {}
+            categories_posts: {},
         };
     },
     mounted() {
-        axios.get("/api/get-categories-data").then((response) => {
-            this.categories = response.data.data;
+        axios.get("/api/home").then((response) => {
+            this.categories_posts = response.data;
         });
 
         this.getResults();
     },
     methods: {
-        change_sort(field) {
-            if (this.sort_field === field) {
-                this.sort_direction =
-                    this.sort_direction === "asc" ? "desc" : "asc";
-            } else {
-                this.sort_field = field;
-                this.sort_direction = "asc";
-            }
-            this.getResults();
-        },
-        getResults(page = 1) {
+        getResults() {
             axios
                 .get(
-                    "/api/posts?page=" +
-                        page +
-                        "&category_id=" +
-                        this.category_id +
-                        "&sort_field=" +
-                        this.sort_field +
-                        "&sort_direction=" +
-                        this.sort_direction +
-                        "&title_search=" +
-                        this.title_search
-                )
+                    "/api/home" )
                 .then((response) => {
-                    this.posts = response.data;
+                    this.categories_posts = response.data;
                 });
         },
+    },
 
-    },
-    watch: {
-        category_id(value) {
-            this.getResults();
-        },
-        title_search() {
-            this.getResults();
-        },
-    },
 };
 </script>
