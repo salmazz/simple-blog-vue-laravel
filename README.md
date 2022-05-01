@@ -28,7 +28,7 @@ This is a blog using feature like administration, creating and editing posts, co
 
           $ git clone https://github.com/juvpengele/laravel-vue-spa-blog
           $ cd simple-blog-vue-laravel
-          laravel-vue-spa-blog$
+          simple-blog-vue-laravel$
 
 * Install the packages for laravel:
 
@@ -36,11 +36,11 @@ This is a blog using feature like administration, creating and editing posts, co
           
 * Create the .env file :
 
-          laravel-vue-spa-blog$ cp .env.example .env
+           simple-blog-vue-laravel$ cp .env.example .env
         
 * Generate the encryption key for Laravel :
 
-          laravel-vue-spa-blog$ php artisan key:generate
+           simple-blog-vue-laravel$ php artisan key:generate
         
 
 * Change the DB_DATABASE to put database name :
@@ -49,11 +49,11 @@ DB_DATABASE=simple-vue-crud
 
 * Load sample records:
 
-          laravel-vue-spa-blog$ php artisan migrate --seed
+           simple-blog-vue-laravel$ php artisan migrate --seed
 
 * Run the Laravel Server in development mode
 
-          laravel-vue-spa-blog$ php artisan serve
+           simple-blog-vue-laravel$ php artisan serve
 
 * Start client in development mode. You should be able to go to `http://localhost:8000`
 
