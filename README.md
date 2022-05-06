@@ -19,7 +19,6 @@ and **VueJS**.
 * Live Search on posts
 * Live Search on categories
 * Live Filter with category on posts list
-* 
 
 ## Getting Started
 
